@@ -34,8 +34,8 @@ Print Sales Invoices
     'demo' : [],
     'data' : [
         'views/report_paperformat.xml',
-        'pos_session_report_view.xml',
         'views/report_pos_session_qweb.xml',
+        'pos_session_report_view.xml',
     ],
     'test' : [
     ],
