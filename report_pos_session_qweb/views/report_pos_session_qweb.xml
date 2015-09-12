@@ -161,7 +161,7 @@
 <template id="report_pos_session_qweb.report_pos_session_qweb">
     <t t-call="report.html_container">
         <t t-foreach="doc_ids" t-as="doc_id">
-            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'report_pos_session_qweb.report_pos_session_qweb_document')"/>
+            <t t-raw="translate_doc(doc_id, doc_model, 'user_id.lang', 'report_pos_session_qweb.report_pos_session_qweb_document')"/>
         </t>
     </t>
 </template>
