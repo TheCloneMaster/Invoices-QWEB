@@ -10,12 +10,13 @@
         file="report_pos_session_qweb.report_pos_session_qweb"
     />
 
+<!--
+
     <record id="pos_session_report" model="ir.actions.report.xml">
         <field name="paperformat_id" ref="report_pos_session_qweb.paperformat_half_page"/>
     </record>
 
 
-<!--
         <record id="view_sale_order_replace_reprint" model="ir.ui.view">
             <field name="name">sale.order.replace.reprint</field>
             <field name="model">account.invoice</field>
