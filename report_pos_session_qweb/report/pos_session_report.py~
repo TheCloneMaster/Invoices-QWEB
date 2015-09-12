@@ -48,4 +48,3 @@ class report_sales_invoice_qweb(osv.AbstractModel):
     _template = 'report_pos_session_qweb.report_pos_session_qweb'
     _wrapped_report_class = pos_session_report
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

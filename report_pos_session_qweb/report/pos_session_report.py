@@ -30,7 +30,7 @@ class pos_session_report(report_sxw.rml_parse): #, common_report_header):
         super(pos_session_report, self).__init__(cr, uid, name, context)
         self.localcontext.update({
             'time': time,
-            ‘get_total’: self._get_total,
+            'get_total': self._get_total,
         })
         self.context = context
 
