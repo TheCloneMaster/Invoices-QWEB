@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
-<template id="report_pos_session_qweb.report_pos_session_qweb">
-        <t t-foreach="docs" t-as="o">
+<template id="report_pos_session_qweb.report_pos_session_qweb_document">
                 <div class="page">
                     <h2>Cierre de Caja: <span t-field="o.name"/></h2>
 
@@ -157,16 +156,14 @@
                         </table>
                     </t-->
                 </div>
-        </t>
 </template>
-<!--
+
 <template id="report_pos_session_qweb.report_pos_session_qweb">
     <t t-call="report.html_container">
         <t t-foreach="doc_ids" t-as="doc_id">
-            <t t-raw="translate_doc(doc_id, doc_model, 'user.lang', 'report_pos_session_qweb.report_pos_session_qweb_document')"/>
+            <t t-raw="translate_doc(doc_id, doc_model, 'user_id.lang', 'report_pos_session_qweb.report_pos_session_qweb_document')"/>
         </t>
     </t>
 </template>
--->
 </data>
 </openerp>

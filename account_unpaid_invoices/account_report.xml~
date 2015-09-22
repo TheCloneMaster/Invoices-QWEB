@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report 
+            id="action_report_print_unpaid"
+            model="res.partner"
+            report_type="qweb-pdf"
+            string="Unpaid Invoices"
+            name="account.report_unpaid"
+            file="account.report_unpaid"
+        />
+    </data>
+</openerp>

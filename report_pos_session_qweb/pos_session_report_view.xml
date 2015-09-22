@@ -3,7 +3,7 @@
 <data>
     <report 
         id="pos_session_report"
-        model="point_of_sale.pos.session"
+        model="pos.session"
         string="Reporte Cierre de Caja"
         report_type="qweb-pdf"
         name="report_pos_session_qweb.report_pos_session_qweb"

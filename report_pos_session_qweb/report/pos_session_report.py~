@@ -36,8 +36,8 @@ class pos_session_report(report_sxw.rml_parse): #, common_report_header):
 
     def _get_total(self, lines, field):
         total = 0.0
-        //for line in lines :
-        //    total += line.product_uom_qty or 0.0
+        ##for line in lines :
+        ##    total += line.product_uom_qty or 0.0
         return total
 
 ##report_sxw.report_sxw('report.voucher.print1','account.voucher','addons/account_voucher_print/report/account_voucher_print1.rml', parser=voucher_print1,header="internal")

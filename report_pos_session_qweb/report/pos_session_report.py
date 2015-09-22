@@ -42,7 +42,7 @@ class pos_session_report(report_sxw.rml_parse): #, common_report_header):
 
 ##report_sxw.report_sxw('report.voucher.print1','account.voucher','addons/account_voucher_print/report/account_voucher_print1.rml', parser=voucher_print1,header="internal")
 
-class report_sales_invoice_qweb(osv.AbstractModel):
+class report_pos_session_qweb(osv.AbstractModel):
     _name = 'report.report_pos_session_qweb.report_pos_session_qweb'
     _inherit = 'report.abstract_report'
     _template = 'report_pos_session_qweb.report_pos_session_qweb'
