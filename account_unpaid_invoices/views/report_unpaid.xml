@@ -142,7 +142,7 @@
                     <span t-esc="formatLang(due[o.id] - paid[o.id], currency_obj=res_company.currency_id)"/>
             </p>
 
-            <p t-if="not getLines(o) or not getInvoices(o)">
+            <p t-if="not getLines(o) and not getInvoices(o)">
                 <strong>No tiene ningún saldo pendiente.</strong>
             </p>
         </div>
