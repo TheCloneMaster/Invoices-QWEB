@@ -43,8 +43,8 @@ class Unpaid(report_sxw.rml_parse):
             self.invoices[partner.id] = self._invoices_get(partner)
 
             self.due[partner.id] = reduce(lambda x, y: x + ((y['account_id']['type'] == 'receivable' and y['debit'] or 0) or (y['account_id']['type'] == 'payable' and y['credit'] * -1 or 0)), self.moves[partner.id], 0)
-            self.paid[partner.id] = reduce(lambda x, y: x + ((y['account_id']['type'] == 'receivable' and y['credit'] or 0) or (y['account_id']['type'] == 'payable' and y['debit'] * -1 or 0)), self.moves[partner.id], 0)
-            self.mat[partner.id] = reduce(lambda x, y: x + (y['debit'] - y['credit']), filter(lambda x: x['date_maturity'] < time.strftime('%Y-%m-%d'), self.moves[partner.id]), 0)
+            self.paid[partner.id] = reduce(lambda x, y: x + ((y['account_id']['type'] == 'receivable' and sum( z['credit'] for z in y['reconcile_partial_id']['line_partial_ids']) or 0) or (y['account_id']['type'] == 'payable' and sum( z['debit'] for z in y['reconcile_partial_id']['line_partial_ids']) or 0)), self.moves[partner.id], 0)
+            self.mat[partner.id] = self.due[partner.id] - self.paid[partner.id]
 
             self.due[partner.id] += reduce(lambda x, y: x + (y['amount_total']), self.invoices[partner.id], 0)
             self.paid[partner.id] += reduce(lambda x, y: x + (y['amount_total'] - y['residual']), self.invoices[partner.id], 0)
@@ -97,6 +97,7 @@ class Unpaid(report_sxw.rml_parse):
         invoices_obj = self.pool['account.invoice']
         invoices = invoices_obj.search(self.cr, self.uid,
                 [('partner_id', '=', partner.id),
+                    ('type', '=', 'out_invoice'),
                     ('state', '=', 'open')])
 
         return invoices_obj.browse(self.cr, self.uid, invoices)

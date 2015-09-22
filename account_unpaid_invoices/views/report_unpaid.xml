@@ -90,15 +90,18 @@
                     </td>
                     <td class="text-right">
                         <t t-if="line.account_id.type == 'receivable'">
-                            <span t-esc="formatLang(line.credit, currency_obj=res_company.currency_id)"/>
+                            <span t-esc="formatLang(sum(x.credit for x in line.reconcile_partial_id.line_partial_ids), currency_obj=res_company.currency_id)"/>
                         </t>
                         <t t-if="line.account_id.type == 'payable'">
-                            <span t-esc="formatLang(line.debit * -1, currency_obj=res_company.currency_id)"/>
+                            <span t-esc="formatLang(sum(x.debit for x in line.reconcile_partial_id.line_partial_ids), currency_obj=res_company.currency_id)"/>
                         </t>
                     </td>
                     <td class="text-right">
-                        <t t-if="time.strftime('%Y-%m-%d') &gt; line['date_maturity']">
-                            <span t-esc="formatLang(line.debit - line.credit, currency_obj=res_company.currency_id)"/>
+                        <t t-if="line.account_id.type == 'receivable'">
+                            <span t-esc="formatLang(line.debit - sum(x.credit for x in line.reconcile_partial_id.line_partial_ids), currency_obj=res_company.currency_id)"/>
+                        </t>
+                        <t t-if="line.account_id.type == 'payable'">
+                            <span t-esc="formatLang(sum(x.debit for x in line.reconcile_partial_id.line_partial_ids) - line.credit, currency_obj=res_company.currency_id)"/>
                         </t>
                     </td>
                 </tr>
