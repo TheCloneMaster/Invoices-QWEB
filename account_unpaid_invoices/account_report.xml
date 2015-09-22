@@ -5,9 +5,9 @@
             id="action_report_print_unpaid"
             model="res.partner"
             report_type="qweb-pdf"
-            string="Unpaid Invoices"
-            name="account_unpaid_invoices.report_unpaid"
-            file="account_unpaid_invoices.report_unpaid"
+            string="Facturas Pendientes"
+            name="account.report_unpaid"
+            file="account.report_unpaid"
         />
     </data>
 </openerp>
