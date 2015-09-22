@@ -16,36 +16,23 @@
                     E-mail: distribuidorakenneth@hotmail.com<br/>
                     www.distribuidorakenneth.com</span></h5>
                 </div>
-                <!--div class="col-xs-3">
-                    <br/><br/><br/>
-                    FECHA: <span style="font-weight:bolder;" t-esc="o.date_invoice and (o.date_invoice[8:10]+'/'+o.date_invoice[5:7] + '/' +o.date_invoice[0:4]) or ''"/>
-                    <h4 style="color:#FF0000;">
-                        <strong>
-                        <span t-if="o.amount_total &gt;= 0 and not o.type == 'out_refund'">FACTURA No. </span>
-                        <span t-if="o.amount_total &lt; 0 or o.type == 'out_refund'">NOTA DE CREDITO No. </span>
-                        <span t-esc="o.number or ''"/>
-                        </strong>
-                    </h4>
-                    <t t-if="not o.type == 'out_refund'">FACTURA: <span t-esc="o.payment_term and o.payment_term.name or ' CONTADO'"/></t>
-
-                </div-->
             </div>
         </div>
 
 
         <div class="page">
-            <div class="row">
+            <!--div class="row">
                 <div class="col-xs-5 col-xs-offset-7">
                     <span t-field="o.name"/><br/>
                     <span t-raw="addresses[o.id].replace('\n\n', '\n').replace('\n', '&lt;br&gt;')"/>
                      <span t-field="o.vat"/>
                  </div>
-            </div>
+            </div-->
 
             <p>
-                Document: Customer account statement<br/>
-                Date: <span t-esc="formatLang(time.strftime('%Y-%m-%d'), date=True)"/><br/>
-                Customer ref: <span t-field="o.ref"/>
+                Estado de Cuenta<br/>
+                Fecha: <span t-esc="formatLang(time.strftime('%Y-%m-%d'), date=True)"/><br/>
+                Cliente: <span t-field="o.ref"/> <span t-field="o.name"/>
             </p>
 
             <p t-if="getLines(o) or getInvoices(o)">
@@ -151,12 +138,12 @@
             </table>
 
             <p t-if="getLines(o) or getInvoices(o)">
-                Total amount due:
+                Saldo Pendiente:
                     <span t-esc="formatLang(due[o.id] - paid[o.id], currency_obj=res_company.currency_id)"/>
             </p>
 
-            <p t-if="not getLines(o) or getInvoices(o)">
-                <strong>There is nothing due with this customer.</strong>
+            <p t-if="not getLines(o) or not getInvoices(o)">
+                <strong>No tiene ningún saldo pendiente.</strong>
             </p>
         </div>
     </t>
