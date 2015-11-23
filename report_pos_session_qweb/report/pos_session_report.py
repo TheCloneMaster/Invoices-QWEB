@@ -36,12 +36,12 @@ class pos_session_report(report_sxw.rml_parse): #, common_report_header):
         self.context = context
 
     def _get_sales_by_product(self, session):
-        self.cr.execute("select p.name_template product, sum(pol.qty) qty, sum(pol.price_subtotal) total "
+        self.cr.execute("select p.default_code, p.name_template product, sum(pol.qty) qty, sum(pol.price_subtotal) total "
                         "from pos_order po, pos_order_line pol, product_product p "
                         "where po.session_id = %s and "
                         "      po.id = pol.order_id and "
                         "      pol.product_id = p.id "
-                        "group by p.name_template "
+                        "group by p.default_code, p.name_template "
                         "order by p.default_code", (session.id,))
 
         allRecords = self.cr.dictfetchall()
