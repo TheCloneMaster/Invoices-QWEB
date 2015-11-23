@@ -41,7 +41,8 @@ class pos_session_report(report_sxw.rml_parse): #, common_report_header):
                         "where po.session_id = %s and "
                         "      po.id = pol.order_id and "
                         "      pol.product_id = p.id "
-                        "group by p.name_template", (session.id,))
+                        "group by p.name_template "
+                        "order by p.default_code", (session.id,))
 
         allRecords = self.cr.dictfetchall()
 
