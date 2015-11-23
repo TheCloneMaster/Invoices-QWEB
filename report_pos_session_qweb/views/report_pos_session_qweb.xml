@@ -126,12 +126,12 @@
                 </tr>
             </table>
             <t t-if="o.config_id.iface_product_summary">
-                <h4>Sales Summary:</h4>
+                <h4>Detalle de Ventas:</h4>
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Qty</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
                             <th class="text-right">Total</th>
                         </tr>
                     </thead>
