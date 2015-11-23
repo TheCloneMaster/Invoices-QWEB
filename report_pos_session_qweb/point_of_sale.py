@@ -19,30 +19,27 @@
 #
 ##############################################################################
 
-{
-    'name' : 'POS Session Summary',
-    'version' : '1.0',
-    'author' : 'CYSFuturo',
-    'summary': 'Summary for POS Session',
-    'description': """
-Prints summary of POS Session
-    """,
-    'category': 'Accounting & Finance',
-    'sequence': 4,
-    'website' : 'http://cysfuturo',
-    'depends' : ['point_of_sale'],
-    'demo' : [],
-    'data' : [
-        'views/point_of_sale_view.xml',
-        'views/report_paperformat.xml',
-        'views/report_pos_session_qweb.xml',
-        'pos_session_report_view.xml',
-    ],
-    'test' : [
-    ],
-    'auto_install': False,
-    'application': True,
-    'installable': True,
-}
+import logging
+import time
+from datetime import datetime
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+import urllib2
+import json
+
+
+from openerp import tools
+from openerp.osv import fields, osv
+from openerp.tools import float_is_zero
+from openerp.tools.translate import _
+
+import openerp.addons.decimal_precision as dp
+import openerp.addons.product.product
+
+_logger = logging.getLogger(__name__)
+
+class pos_config(osv.osv):
+    _inherit = 'pos.config'
+
+    _columns = {
+        'iface_product_summary': fields.boolean('Show Product Summary',help='Show Product Summary on Session Report'),
+    }

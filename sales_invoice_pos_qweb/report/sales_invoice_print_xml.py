@@ -19,30 +19,25 @@
 #
 ##############################################################################
 
-{
-    'name' : 'POS Session Summary',
-    'version' : '1.0',
-    'author' : 'CYSFuturo',
-    'summary': 'Summary for POS Session',
-    'description': """
-Prints summary of POS Session
-    """,
-    'category': 'Accounting & Finance',
-    'sequence': 4,
-    'website' : 'http://cysfuturo',
-    'depends' : ['point_of_sale'],
-    'demo' : [],
-    'data' : [
-        'views/point_of_sale_view.xml',
-        'views/report_paperformat.xml',
-        'views/report_pos_session_qweb.xml',
-        'pos_session_report_view.xml',
-    ],
-    'test' : [
-    ],
-    'auto_install': False,
-    'application': True,
-    'installable': True,
-}
+import time
+from openerp.osv import osv
+from openerp.report import report_sxw
+from openerp.tools import amount_to_text_en
+#from common_report_header import common_report_header
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+class sales_invoice_print(report_sxw.rml_parse): #, common_report_header):
+    #_name = 'report.sales.invoice.print'
+    def __init__(self, cr, uid, name, context):
+        super(sales_invoice_print, self).__init__(cr, uid, name, context)
+        self.localcontext.update({
+            'get_digits':self.get_digits,
+            'time': time,
+        })
+        self.context = context
+
+class report_sales_invoice_qweb(osv.AbstractModel):
+    _name = 'report.sales_invoice_pos_qweb.report_sales_invoice_qweb'
+    _inherit = 'report.abstract_report'
+    _template = 'sales_invoice_pos_qweb.report_sales_invoice_qweb'
+    _wrapped_report_class = sales_invoice_print
+

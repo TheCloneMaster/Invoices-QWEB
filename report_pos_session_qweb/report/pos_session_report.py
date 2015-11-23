@@ -31,8 +31,21 @@ class pos_session_report(report_sxw.rml_parse): #, common_report_header):
         self.localcontext.update({
             'time': time,
             'get_total': self._get_total,
+            'get_sales_by_product': self._get_sales_by_product,
         })
         self.context = context
+
+    def _get_sales_by_product(self, session):
+        self.cr.execute("select p.name_template product, sum(pol.qty) qty, sum(pol.price_subtotal) total "
+                        "from pos_order po, pos_order_line pol, product_product p "
+                        "where po.session_id = %s and "
+                        "      po.id = pol.order_id and "
+                        "      pol.product_id = p.id "
+                        "group by p.name_template", (session.id,))
+
+        allRecords = self.cr.dictfetchall()
+
+        return allRecords
 
     def _get_total(self, lines, field):
         total = 0.0

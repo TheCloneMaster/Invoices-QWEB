@@ -20,28 +20,26 @@
 ##############################################################################
 
 {
-    'name' : 'POS Session Summary',
+    'name' : 'Print Invoice',
     'version' : '1.0',
     'author' : 'CYSFuturo',
-    'summary': 'Summary for POS Session',
+    'summary': 'POS formated sales invoice',
     'description': """
-Prints summary of POS Session
+Print Sales Invoices
     """,
     'category': 'Accounting & Finance',
     'sequence': 4,
     'website' : 'http://cysfuturo',
-    'depends' : ['point_of_sale'],
+    'depends' : ['sale'],
     'demo' : [],
     'data' : [
-        'views/point_of_sale_view.xml',
-        'views/report_paperformat.xml',
-        'views/report_pos_session_qweb.xml',
-        'pos_session_report_view.xml',
+        'sales_invoice_view.xml',
+        'views/report_sales_invoice_qweb.xml',
     ],
     'test' : [
     ],
     'auto_install': False,
-    'application': True,
+    'application': False,
     'installable': True,
 }
 

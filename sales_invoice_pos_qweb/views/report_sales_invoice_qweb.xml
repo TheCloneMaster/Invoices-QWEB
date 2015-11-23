@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="account.report_invoice_document">
+<div class="page">
+    <h4><t t-esc='o.company_id.name' /></h4>
+    <div class="text-center">
+        <t t-if='o.company_id.vat'>
+            <div>Céd.Jurídica: <t t-esc='o.company_id.vat' /></div>
+        </t>
+        <t t-if='o.company_id.street'>
+            <div><t t-esc='o.company_id.street' /></div>
+        </t>
+        <t t-if='o.company_id.phone'>
+            <div>Teléfono: <t t-esc='o.company_id.phone' /></div>
+        </t>
+        <br/>
+    </div>
+    <div>
+        <div>Factura:<t t-esc='o.number' /></div>
+        <div>Fecha:<t t-esc='o.date_invoice' /></div>
+        <t t-if='o.user_id'>
+            <div>Cajero: <t t-esc='o.user_id.name' /></div>
+        </t>
+        <t t-if='o.partner_id'>
+            <div>Cliente: <t t-esc='o.partner_id.name' /></div>
+        </t>
+        <br/>
+    </div>
+
+    <table class="table table-condensed">
+        <tbody>
+            <tr t-foreach="o.invoice_line" t-as="line">
+                <td style="width: 70%">
+                    <span t-esc="'%.f' % line.quantity"/> x 
+                    <t t-esc="line.name"/>
+                </td>
+                <td  style="width: 30%" class="text-right">
+                    <span t-field="line.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-xs-8 pull-right">
+            <table class="table table-condensed">
+                <tr class="border-black">
+                    <td><strong>Subtotal</strong></td>
+                    <td class="text-right">
+                        <span t-field="o.amount_untaxed" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                    </td>
+                </tr>
+                <tr class="border-black">
+                    <td><strong>Taxes</strong></td>
+                    <td class="text-right">
+                        <span t-field="o.amount_tax" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td class="text-right">
+                        <span t-field="o.amount_total" t-field-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: &quot;o.currency_id&quot;}"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="text-center" style="font-size:8.0px"> Autorizado mediante resolución #11-97 de la Dirección General de Tributación Directa, publicado en el diario oficial La Gaceta #171 el 5 de septiembre de 1997
+    </div>
+</div>
+</template>
+
+<template id="account.report_invoice">
+    <t t-call="report.html_container">
+        <t t-foreach="doc_ids" t-as="doc_id">
+            <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'account.report_invoice_document')"/>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>
