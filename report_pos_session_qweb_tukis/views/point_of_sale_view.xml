@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_pos_config_form_qweb">
+            <field name="name">pos.config.form.qweb.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_config_form"/>
+            <field name="arch" type="xml">
+                <field name="iface_big_scrollbars" position="after">
+                    <field name="iface_product_summary" />
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="paperformat_half_page" model="report.paperformat">
+            <field name="name">Media Pagina</field>
+            <field name="default" eval="True"/>
+            <field name="format">custom</field>
+            <field name="page_height">8.5in</field>
+            <field name="page_width">5.5in</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">1</field>
+            <field name="margin_bottom">1</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">1</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">1</field>
+            <field name="dpi">130</field>
+        </record>
+    </data>
+</openerp>
